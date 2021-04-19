@@ -2,6 +2,7 @@
 #include <iostream>
 
 #define delimiter "\n-------------------------------------------------------------------------------\n"
+//#define operator_plus_check
 
 class string;
 string operator+(const string& left, const string& right);
@@ -26,33 +27,33 @@ public:
 
 	// CONSTRUCTORS
 
-	string(int size = 80)
+	explicit string(int size = 80) :size(size), str(new char[size] {})
 	{
-		this->size = size;
-		this->str = new char[size] {};
+		//this->size = size;
+		//this->str = new char[size] {};
 		std::cout << (size == 80 ? "default" : "size") << "constructor\t" << this << std::endl;
 	}
 
-	string(const char* str)
+	string(const char* str) :string(strlen(str)+1)
 	{
-		this->size = strlen(str) + 1;
-		this->str = new char[size] {};
+		//this->size = strlen(str) + 1;
+		//this->str = new char[size] {};
 		strcpy(this->str, str);
 		std::cout << "constructor:\t\t" << this << std::endl;
 	}
 
-	string(const string& other)
+	string(const string& other) :string(other.str)
 	{
-		this->size = other.size;
-		this->str = new char[size] {};
-		strcpy(this->str, other.str);
+		//this->size = other.size;
+		//this->str = new char[size] {};
+		//strcpy(this->str, other.str);
 		std::cout << "copyconstructor:\t" << this << std::endl;
 	}
 
-	string(string&& other)
+	string(string&& other) :size(other.size), str(other.str)
 	{
-		this->size = other.size;
-		this->str = other.str;
+		//this->size = other.size;
+		//this->str = other.str;
 		other.str = nullptr;
 		std::cout << "Moveconstructor:\t" << this << std::endl;
 	}
@@ -115,7 +116,7 @@ public:
 
 string operator+(const string& left, const string& right)
 {
-	string result = left.get_size() + right.get_size() - 1;
+	string result(left.get_size() + right.get_size() - 1);
 	for (int i = 0; i < left.get_size(); i++)
 		//result.get_str()[i] = left.get_str()[i];
 		result[i] = left[i];
@@ -170,15 +171,30 @@ void main()
 	std::cout << str2 << std::endl;
 #endif // assignment_check
 
+#ifdef operator_plus_check
 	string str1 = "hello";
 	string str2 = "world";
 	std::cout << delimiter << std::endl;
 	string str3 = str1 + str2; //операвтор + будет выполнять конкатенацию (слияние) строк
 	std::cout << delimiter << std::endl;
 	std::cout << str3 << std::endl;
+	string str4 = str3;
+	std::cout << str4 << std::endl;
 	/*std::cout << delimiter << std::endl;
 	str1 += str2;
 	std::cout << str1 << std::endl;
 	std::cout << delimiter << std::endl;*/
+#endif // operator_plus_check
+
+	//string str1; // default constructor
+	//string str2(); // объявляестя функция str2, которая ничего не принимает и возвращает значение типа string
+	//string str3{}; // default constructor
+	//string str4{ 5 }; // size constructor
+	//string str5{ 8 };
+	//string str6{ "hello" };
+	//string str7{ "hello" };
+	//std::cout << str7 << std::endl;
+	////string str8 = 16; //неявное преобразование int в string
+	
 
 }
