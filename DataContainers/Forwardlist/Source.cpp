@@ -1,64 +1,59 @@
-#pragma warning(disable:4326)
-#include<iostream>
-using std::cin;
-using std::cout;
-using std::endl;
-
-#define tab "\t"
-#define delimiter "\n--------------------------------------------------------\n"
-
-
-
-class Element
-{
-	int Data;		//Значение элемента
-	Element* pNext;	//Pointer to next - Указатель на следующий элемент
-	static int count;
-public:
-	const Element* getpNext()const
-	{
-		return pNext;
-	}
-	int getData()const
-	{
-		return Data;
-	}
-	Element(int Data, Element* pNext = nullptr) :Data(Data), pNext(pNext)
-	{
-		count++;
-#ifdef DEBUG
-		cout << "EConstructor:\t" << this << endl;
-#endif // DEBUG
-
-	}
-	~Element()
-	{
-		count--;
-#ifdef DEBUG
-		cout << "EDestructor:\t" << this << endl;
-#endif // DEBUG
-
-	}
-
-	friend class Iterator;
-	friend class ForwardList;
-	friend ForwardList operator+(const ForwardList& left, const ForwardList& right);
-};
+#include "Element.h"
 
 int Element::count = 0;	//Инициализация статической переменной
 
+const Element* Element::getpNext()const
+{
+	return pNext;
+}
+int Element::getData()const
+{
+	return Data;
+}
+Element::Element(int Data, Element* pNext) :Data(Data), pNext(pNext)
+{
+	count++;
+#ifdef DEBUG
+	cout << "EConstructor:\t" << this << endl;
+#endif // DEBUG
+
+}
+Element::~Element()
+{
+	count--;
+#ifdef DEBUG
+	cout << "EDestructor:\t" << this << endl;
+#endif // DEBUG
+
+}
 class Iterator
 {
 	Element* Temp;
 public:
-	Iterator(Element* Temp = nullptr) :Temp(Temp)
+	Iterator(Element* Temp = nullptr);
+	~Iterator();
+
+	//                        Operators:
+	Iterator& operator++();
+	Iterator operator++ (int);
+	bool operator==(const Iterator& other)const;
+	bool operator!=(const Iterator& other)const;
+	const int& operator*()const;
+	int& operator*();
+	const Element* operator->()const;
+	Element* operator->();
+	
+};
+
+
+	Iterator::Iterator(Element* Temp) : Temp(Temp)
 	{
 #ifdef DEBUG
 		cout << "IConstructor\t" << this << endl;
 #endif // DEBUG
 
 	}
-	~Iterator()
+	Iterator::~Iterator()
 	{
 #ifdef DEBUG
 		cout << "IDestructor:\t" << this << endl;
@@ -67,48 +62,45 @@ public:
 	}
 
 	//                        Operators:
-	Iterator& operator++()
+	Iterator& Iterator::operator++()
 	{
 		Temp = Temp->pNext;
 		return *this;
 	}
-	Iterator operator++ (int)
+	Iterator Iterator::operator++ (int)
 	{
 		Iterator old = *this;
 		Temp = Temp->pNext;
 		return old;
 	}
 
-	bool operator==(const Iterator& other)const
+	bool Iterator::operator==(const Iterator& other)const
 	{
 		return this->Temp == other.Temp;
 	}
-	bool operator!=(const Iterator& other)const
+	bool Iterator::operator!=(const Iterator& other)const
 	{
 		return this->Temp != other.Temp;
 	}
 
-	const int& operator*()const
+	const int& Iterator::operator*()const
 	{
 		return Temp->Data;
 	}
-	int& operator*()
+	int& Iterator::operator*()
 	{
 		return Temp->Data;
 	}
 
 
-	const Element* operator->()const
+	const Element* Iterator::operator->()const
 	{
 		return Temp;
 	}
-	Element* operator->()
+	Element* Iterator::operator->()
 	{
 		return Temp;
 	}
-};
-
-
 
 class ForwardList
 {
