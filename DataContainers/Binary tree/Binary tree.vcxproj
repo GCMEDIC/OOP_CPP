@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{3081a6a7-1b15-458c-a546-356644f0926d}</ProjectGuid>
-    <RootNamespace>DataContainers</RootNamespace>
+    <ProjectGuid>{861c1c5f-ecfe-49dc-8f60-fa92d03bee07}</ProjectGuid>
+    <RootNamespace>Binarytree</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
