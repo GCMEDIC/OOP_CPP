@@ -48,6 +48,10 @@ class ComputerBuilder // Abstract Builder
 protected:
 	Computer* computer;
 public:
+	ComputerBuilder()
+	{
+		this->computer = new Computer;
+	}
 	virtual ~ComputerBuilder()
 	{
 
@@ -172,4 +176,10 @@ void main()
 	Assembler sysadmin;
 	sysadmin.assemblyComputer(&cheap_comp);
 	cheap_comp.getComputer()->info();
+
+	sysadmin.assemblyComputer(&office);
+	office.getComputer()->info();
+
+	sysadmin.assemblyComputer(&for_dying_light_2);
+	for_dying_light_2.getComputer()->info();
 }
