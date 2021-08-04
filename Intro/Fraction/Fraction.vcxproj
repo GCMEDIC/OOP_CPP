@@ -141,6 +141,15 @@
   <ItemGroup>
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="asdfax.h" />
+    <ClInclude Include="Bool operators.h" />
+    <ClInclude Include="Fraction divide.h" />
+    <ClInclude Include="Fraction main.h" />
+    <ClInclude Include="Fraction minus.h" />
+    <ClInclude Include="Fraction multiply.h" />
+    <ClInclude Include="Fraction plus.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -19,4 +19,27 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="asdfax.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Fraction main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Fraction minus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Fraction plus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Fraction multiply.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Fraction divide.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bool operators.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>
